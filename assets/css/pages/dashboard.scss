@@ -1,0 +1,66 @@
+.dashboard__title {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: var(--green);
+    margin-bottom: 24px;
+}
+.dashboard__title svg {
+    height: 20px;
+    width: 20px;
+    margin-right: 8px;
+}
+.dashboard__card {
+    background: var(--background);
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 20px var(--border);
+    border-radius: 4px;
+    padding: 16px;
+}
+.dashboard__card > * + * {
+    margin-top: 16px;
+}
+.dashboard__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.dashboard__search input { 
+    width: 100%;
+    max-width: 300px;
+    min-width: 280px;
+    min-height: 44px;
+    display: block;
+    padding: 12px 8px;
+    padding-left: 16px;
+    outline: none;
+    background: url(../../../public/input-search.svg) right 16px center / 12px 12px no-repeat;
+    border: 1px solid #ADADAD;
+    border-radius: 4px;
+    transition: .3s;
+}
+.dashboard__search input:hover,
+.dashboard__search input:focus {
+    border: 1px solid var(--border);
+}
+.dashboard__btn {
+    @extend .btn;
+    font-size: .9em;
+}
+.dashboard__body {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
+.dashboard__actions {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.dashboard__actions > * + * {
+    margin-left: 8px;
+}
+.dashboard__actions button svg {
+    color: var(--red);
+}

@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %} 
+
+{% block body %}
+    {# <p style="background: red; color: white;">Cette aliment est périmé</p> #}
+    {% if product.expirationDate | date('d F Y') < "now" | date('d F Y') %}
+        <p class="notification__perimer">Cet aliment est périmé</p>
+    {% elseif product.bestBeforeDate | date('d F Y') < "now" | date('d F Y') %}
+        <p class="notification__perimer">Cet aliment est périmé</p>
+    {% endif %}
+        
+    <h1>{{ product.name }}</h1>
+    <h3>Catégorie : {{ product.classifiedIn.name }}</h3>
+    <h3>Emplacement : {{ product.placeIn.name }}</h3>
+    <h3>Quantité : {{ product.quantity }}</h3>
+    <h3>Unité : {{ product.units.name }}</h3>
+    <h3>Date d'achat : {{ product.purchaseDate | date('d F Y') }}</h3>
+
+    {% if product.expirationDate is not null %}
+        <h3>A consommer avant le : {{ product.expirationDate | date('d F Y') }}</h3>
+    {% elseif product.bestBeforeDate is not null %}
+        <h3>A consommer avant le : {{ product.bestBeforeDate | date('d F Y') }}</h3>
+    {% endif %}
+    
+    <h3>Ajouter le : {{ product.createdAt | date('d F Y') }}</h3>
+    <a href="{{ path('product_edit', {id: product.id}) }}">
+        {{'product.action.edit' | trans }}
+    </a>
+
+
+    
+    
+
+    <form method="POST" action="{{ path('product_delete', {id: product.id}) }}" onsubmit="return confirm('Etes-vous sur de supprimer ce produit ?')">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
+        <button>Supprimer</button>
+    </form>
+    <a href="{{ path('product_index')}}">
+        {{'product.action.back_to_list' | trans }}
+    </a> 
+{% endblock body %}

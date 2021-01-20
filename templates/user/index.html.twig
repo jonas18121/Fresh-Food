@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="{{ label }}">
+                  {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    <section class="container">
+
+        <h1>Mon Compte</h1>
+
+        <article class='user_card'>
+            <header class='user_card_header'>
+                <div class='user_card_header_div'>
+                
+                    {% if user.image is null %}
+                        <img src="/images/user/default/user.png" alt="image" class='user_card_header_img'>
+                    {% else %}
+                        <img src="{{ asset(user.image.webPath) }}" alt="{{ user.image.alt }}" class='user_card_header_img'>
+                    {% endif %}
+                    <a href=" {{ path('user_image') }}"><i class="fas fa-camera-retro"></i></a>
+                </div>
+            </header>
+            <div class="user_card_body">
+                <h2 class="space"> {{ user.pseudo |truncate }} </h2>
+                <p class="space"> {{ user.email }} </p>
+                <p class="space">Créer le : {{ user.createdAt | date('d F Y') }} </p>
+                
+                {% if user.updatedAt is not null %}
+                    <p>Modifier le : {{ user.updatedAt | date('d F Y') }} </p>
+                {% endif %}
+
+                <div class="mod_sup">  
+                    <div class="dashboard__actions ">
+                       <a href="{{ path('user_user_edit') }}" class="middle"> {{ icon('edit') }} Modifier </a>
+                       
+                        <form method="POST" action="{{ path('user_user_delete') }}" class="middle" onsubmit="return confirm('Etes-vous sur de vouloir supprimer votre compte ?')">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete') }}">
+                            <button> {{ icon('trash') }} Supprimer </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </section>
+{% endblock %}

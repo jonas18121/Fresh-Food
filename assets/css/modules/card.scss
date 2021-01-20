@@ -1,0 +1,133 @@
+.card,
+%card {
+    margin: 0 3px 16px;
+    overflow: hidden;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.1);
+    transition: box-shadow .3s;
+}
+.card:hover {
+    box-shadow: 0px 0px 20px rgba(0,0,0, 0.3);
+}
+.card__thumb {
+    height: 200px;
+    overflow: hidden;
+    background-color: #000000;
+    transition: height .3s;
+
+    & img {
+        width: 225px;
+        display: block;
+        opacity: 1;
+        transition: opacity .3s, transform .3s;
+        transform: scale(1);
+        height: 200px;
+        /*height: 100%;/*l'image rempli son espace dédié*/
+    }
+
+    .card:hover & img {
+        opacity: .6;
+        transform: scale(1.2);
+    }
+
+    .card:hover & {
+        height: 50px;
+    }
+}
+.card:hover .card__thumb {
+    opacity: 0.6;
+}
+.card__expiration {
+    display: flex;
+    justify-content: center;
+    color: #FFFFFF;
+    background-color: var(--red);
+}
+.card__not__expiration {
+    @extend .card__expiration;
+    background-color: var(--green);
+}
+.card__expiration__now {
+    @extend .card__expiration;
+    background-color: rgb(236, 142, 0);
+}
+.card__name {
+    font-size: 16px;
+
+    .card:hover & {
+       animation: nameBlur .3s;
+    }
+}
+.card__body {
+    position: relative;
+    padding: 20px;
+    height: 50px;
+    transition: height .3s;
+
+    .card:hover & {
+        height: 50px + 150px; // La valeur après le plus => (height du .card__thumb) - (height du.card:hover &)
+    }
+}
+.card__author {
+    position: absolute;
+    font-size: .85rem;
+    left: 20px;
+    right: 20px;
+    bottom: 120px;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    transition: opacity .3s - .1s, transform .3s - .1s;
+    transition-delay: 0s;
+    transform: translateY(25px);
+
+    .card:hover & {
+        opacity: 1;
+        transition-delay: .1s;
+        transform: translateY(0px);
+    }
+}
+.card__date {
+    @extend .card__author;
+    bottom: 140px;
+}
+.card__category {
+    @extend .card__author;
+    bottom: 100px;
+}
+.card__emplacement {
+    @extend .card__author;
+    bottom: 80px;
+}
+.card__quantity {
+    @extend .card__author;
+    bottom: 60px;
+}
+.card__unity {
+    @extend .card__author;
+    left: 40px;
+    bottom: 60px;
+}
+.card__purchase__date {
+    @extend .card__author;
+    bottom: 20px;
+}
+.card__footer {
+    //display: flex;
+    padding: 20px;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    font-size: 14px;
+    color: #A3A9AB;
+}
+@keyframes nameBlur {
+    0% {
+        opacity: 0.6;
+        text-shadow: 0px 5px 5px rgba(0, 0, 0, .6);
+    }
+    100% {
+        opacity: 1;
+        text-shadow: 0px 5px 5px rgba(0, 0, 0, 0);
+    }
+}

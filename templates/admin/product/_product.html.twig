@@ -1,0 +1,29 @@
+<article class="card">
+    <a href="{{ path('admin_product_edit', {id: product.id}) }}">
+        <header class="card__thumb">
+            <img src="https://via.placeholder.com/200" alt="">
+        </header>
+        <div class="card__body">
+            <div class="card__name">{{ product.name }}</div>
+            <div class="card__author">{{ product.author.pseudo }}</div>
+            <div class="card__category">{{ product.classifiedIn.name }}</div>
+            <div class="card__emplacement">{{ product.placeIn.name }}</div>
+            <div class="card__quantity">{{ product.quantity }}</div>
+            <div class="card__unity">{{ product.units.name }}</div>
+            <div class="card__purchase__date">Acheté le : {{ product.purchaseDate | date('d F Y') }}</div>
+        </div>
+        <footer class="card__footer">
+            <div class="card__createdAt">Enregistrer le : {{ product.createdAt | date('d F Y') }}</div>
+            {% if product.updatedAt is not null %}
+            <div class="card__updateddAt">Modifié le : {{ product.updatedAt | date('d F Y') }}</div>
+            {% endif %}
+            <a href="{{ path('admin_product_edit', {id: product.id}) }}">{{ icon('edit')}}</a>
+            <form method="POST" action="{{ path('admin_product_delete', {id: product.id}) }}"
+                onsubmit="return confirm('Etes-vous sur de supprimer ce produit ?')">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
+                <button>{{ icon('trash')}}</button>
+            </form>
+        </footer>
+    </a>
+</article>

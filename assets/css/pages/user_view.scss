@@ -1,0 +1,71 @@
+.user_card{
+    background-color: white; 
+    //height: 450px;
+    //width: 100%;
+    margin: 1rem auto;
+    text-align: center;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+}
+
+.user_card_header{
+    padding: 35px 10px 10px;
+    height: 170px;
+    background: linear-gradient(to bottom right, var(--green) 50%, white 50%);
+}
+
+.user_card_header_div{
+    height: 100px;
+    width: 100px;
+    margin: 0px auto 0;
+}
+
+.user_card_header_img{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+
+.user_card_body{
+    padding: 10px;
+}
+
+.space{
+    margin: 20px 0;
+}
+
+.mod_sup{
+    width: 80%;
+    margin: 20px auto;
+}
+
+.middle{
+    margin: auto;
+}
+
+
+
+/*------------------ CSS TABLETTE  -------------------------*/
+@media screen and (min-width: 500px) {
+
+    .user_card{
+        width: 45%;
+    }
+
+    .user_card_header_div{
+        height: 120px;
+        width: 120px;
+        margin: 0px auto 0;
+    }
+    
+    .user_card_header_img{
+        height: 120px;
+        width: 120px;
+        border-radius: 50%;
+    }
+
+    /*-------- taille image /user/upload/image ----------*/
+    .taille_img{
+        width: 50%;
+        margin: auto;
+    }
+}

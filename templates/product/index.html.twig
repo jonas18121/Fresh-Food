@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="js-filter">
+    <aside class="sidebar">
+        {% include 'product/_filter.html.twig' with {form: form} %}
+    </aside>
+    <div class="products">
+        <div class="js-filter-pagination">
+            {% include 'product/_pagination.html.twig' %}
+        </div>
+        <div class="main js-filter-products">
+            {% include 'product/_products.html.twig' %}
+            {% if products is empty %}
+            <p>Aucun produit</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock body %}

@@ -1,0 +1,69 @@
+<div class="form__container">
+    {{ form_start(form, { 'attr' : { 'class' : 'form'} } ) }}
+    <div class="form__group">
+        <label for="inputAuthor">{{'product.form.author' | trans }}</label>
+        {{ form_widget(form.author, { 'attr' : { 'class' : 'form__control'}}) }}
+        {{ form_errors(form.author, { 'attr' : { 'class' : 'form__error'}}) }}
+    </div>
+    <div class="form__group">
+        <label for="inputName">{{'product.form.name' | trans }}</label>
+        {{ form_widget(form.name, { 'attr' : { 'class' : 'form__control'} } ) }}
+        {{ form_errors(form.name, { 'attr' : { 'class' : 'form__error'}}) }}
+    </div>
+    <div class="form__group">
+        <label for="inputClassifiedIn">{{'product.form.category' | trans }}</label>
+        {{ form_widget(form.classifiedIn, { 'attr' : { 'class' : 'form__control'}})}}
+        {{ form_errors(form.classifiedIn, { 'attr' : { 'class' : 'form__error'}}) }}
+    </div>
+    <div class="form__group">
+        <label for="inputPlaceIn">{{'product.form.emplacement' | trans }}</label>
+        {{ form_widget(form.placeIn, { 'attr' : { 'class' : 'form__control'}})}}
+        {{ form_errors(form.placeIn, { 'attr' : { 'class' : 'form__error'}}) }}
+    </div>
+    <div class="form__group">
+        <label for="inputQuantity">{{'product.form.quantity' | trans }}</label>
+        {{ form_widget(form.quantity, { 'attr' : { 'class' : 'form__control'}})}}
+        {{ form_errors(form.quantity, { 'attr' : { 'class' : 'form__error'}}) }}
+    </div>
+    <div class="form__group">
+        <label for="inputUnits">{{'product.form.unity' | trans }}</label>
+        {{ form_widget(form.units, { 'attr' : { 'class' : 'form__control'}})}}
+        {{ form_errors(form.units, { 'attr' : { 'class' : 'form__error'}}) }}
+    </div>
+
+    <div class="form__group">
+        <label for="inputPurchaseDate">{{'product.form.purchaseDate' | trans }}</label>
+        {{ form_widget(form.purchaseDate, { 'attr' : { 'class' : 'form__control'}})}}
+        {{ form_errors(form.purchaseDate, { 'attr' : { 'class' : 'form__error'}}) }}
+    </div>
+
+    <div class="form__switch">
+        <label for="inputExpirationDate">DLC : Date Limite de Consommation</label>
+        <label class="switch">
+            <input type="checkbox">
+            <span class="slider"></span>
+        </label>
+    </div>
+    {{ form_errors(form.expirationDate, { 'attr' : { 'class' : 'form__error'}}) }}
+    <div class="form__group">
+        {{ form_widget(form.expirationDate, { 'attr' : { 'class' : 'form__control'}})}}
+        <label for="inputExpirationDate"></label>
+    </div>
+    <div class="form__switch">
+        <label for="inputBestBeforeDate">DDM : Date à Durée Minimale</label>
+        <label class="switch">
+            <input type="checkbox">
+            <span class="slider"></span>
+        </label>
+    </div>
+    {{ form_errors(form.bestBeforeDate, { 'attr' : { 'class' : 'form__error'}}) }}
+    <div class="form__group">
+        {{ form_widget(form.bestBeforeDate, { 'attr' : { 'class' : 'form__control'}})}}
+        <label for="inputBestBeforeDate"></label>
+    </div>
+    <div class="form__btn">
+        <button type="submit" class="btn__submit">{{ action }}</button>
+        <a href="{{ path('admin_product_index') }}">Retour</a>
+    </div>
+    {{ form_end(form)}}
+</div>

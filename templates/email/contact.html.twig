@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        section{
+            width: 80%;
+            padding: 10px;
+        }
+        h1, h2, h3, p{
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Fresh Food Mail</h1>
+
+    <h2> Vous Avez reçu un mail de Mr/Mme : {{ user.pseudo }} </h2>
+    
+    <p> Email : <strong> {{ user.email }} </strong> </p>
+
+    <h3> Sujet : {{ contact.subject | capitalize }} </h3>
+
+    <p> {{ contact.message }} </p>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <style>
+        section{
+            width: 80%;
+            padding: 10px;
+        }
+        h1, h2, p{
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <h1>Fresh Food Mail</h1>
+
+        <h2> Nouveau compte </h2>
+
+        <p> Votre compte a bien été créer. </p>
+        <p><a href="{{ absolute_url(path('activation', {'token': token} )) }}">Cliquez ici pour activer votre compte</a></p>
+    </section>
+</body>
+</html>

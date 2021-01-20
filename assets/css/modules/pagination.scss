@@ -1,0 +1,32 @@
+.pagination {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin: 16px 0;
+  }
+  .pagination li a,
+  .pagination li span {
+    margin: 4px;
+    padding: 4px 8px;
+    min-width: 35px;
+  }
+  .pagination .is-active span {
+    background: var(--green);
+    border: 1px solid var(--green);
+    border-radius: 4px;
+    color: #FFFFFF;
+    opacity: 1;
+  }
+  .pagination a {
+    background: var(--background);
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 20px var(--border);
+    border-radius: 4px;
+    color: var(--border);
+    opacity: .6;
+  }
+  .pagination a:hover {
+    background: var(--background);
+    color: var(--border);
+    opacity: 1;
+  }

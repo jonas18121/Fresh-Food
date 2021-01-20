@@ -1,0 +1,86 @@
+/*------------------ CSS MOBILE PAR DEFAUT -------------------------*/
+:root{
+    --duration: 0.3s;
+}
+
+.div__btn{
+    margin: 1rem 0;
+}
+
+/* carte produit */
+
+.card__product{
+    box-shadow: 0px 0px 20px rgba(0,0,0, 0.1);
+    transition: box-shadow var(--duration);
+    margin: 1rem 0;
+}
+
+.card__product:hover{
+    box-shadow: 0px 0px 20px rgba(0,0,0, 0.3);
+}
+
+.card__product__thumb{
+    
+    background-color: #000;
+    overflow: hidden;
+    img{
+        display: block;
+        opacity: 1;
+        transition: opacity var(--duration), transform var(--duration);
+        transform: scale(1);
+    }
+}
+
+.card__product__thumb img{
+    margin: 0 0 -0.6rem;
+}
+
+.card__product:hover .card__product__thumb img{
+    opacity: 0.6;
+    transform: scale(1.5);
+}
+
+.card__product__body{
+    height: 9rem;
+    background-color: var(--btn);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 0.75rem 1.5rem;
+}
+
+/*------------------ CSS TABLETTE  -------------------------*/
+@media screen and (min-width: 500px) {
+    .card__product{
+        display: inline-block;
+        margin: 0 auto 1rem;
+        width: 45%;
+        border-radius: 10px;
+        margin: 1rem auto;
+    }
+
+    .card__product:nth-child(2n) {
+        float: right;
+    }
+
+    .card__product__body{
+        padding: 0.75rem;
+    }
+}
+
+/*------------------ CSS DESKTOP  -------------------------*/
+@media screen and (min-width: 1024px) {
+
+    .card__product{
+        width: 23%;
+        border-radius: 10px;
+        margin: 0 0.5rem 1rem ;
+    }
+
+    .card__product:nth-child(2n) {
+        float: none;
+    }
+    
+    .card__product > div{
+        width: 100%;
+    }
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}Fresh Food{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500,700|Roboto:300,400&display=swap"
+        rel="stylesheet">
+    {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
+</head>
+
+<body>
+    <nav class="nav">
+        <ul class="nav__menu">
+            {% if app.user %}
+            <li class="nav__home {{ app.request.get('_route') == 'admin_home' ? 'active' }}">
+                <a href="{{ path('home') }}" title="Accueil">{{ icon('home') }}</a>
+            </li>
+            <li class="{{ app.request.get('_route') == 'admin_user_index' ? 'active' }}">
+                <a href="{{ path('admin_user_index')}}">{{ icon('user') }} Comptes</a>
+            </li>
+            <li class="{{ app.request.get('_route') == 'admin_product_index' ? 'active' }}">
+                <a href="{{ path('admin_product_index')}}">{{ icon('bags') }} Produits</a>
+            </li>
+            <li class="{{ app.request.get('_route') == 'admin_category_index' ? 'active' }}">
+                <a href="{{ path('admin_category_index')}}">{{ icon('category') }} Catégories</a>
+            </li>
+            <li class="{{ app.request.get('_route') == 'admin_emplacement_index' ? 'active' }}">
+                <a href="{{ path('admin_emplacement_index')}}">{{ icon('location') }} Emplacements</a>
+            </li>
+            <li class="{{ app.request.get('_route') == 'admin_unity_index' ? 'active' }}">
+                <a href="{{ path('admin_unity_index')}}">{{ icon('balance') }} Unités</a>
+            </li>
+            {% else %}
+
+            {% endif %}
+        </ul>
+        <ul class="nav__side">
+            {% if app.user %}
+            <li class="nav__account"><a href="{{ path('security_logout') }}" title="Se déconnecter">{{ icon('door') }}{{ app.user.pseudo }}</a></li>
+            {% else %}
+            <li class="nav__account {{ app.request.get('_route') == 'security_login' ? 'active' }}"><a
+                    href="{{ path('security_login') }}">{{ icon('user') }} Connexion</a></li>
+            {% endif %}
+        </ul>
+        <button class="nav__burger">
+            <span></span>
+        </button>
+    </nav>
+    <div class="container">
+        {% for type, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+                <alert-message type="{{ type }}" duration="6">
+                    {{ message }}
+                </alert-message>
+            {% endfor %}
+        {% endfor %}
+    
+        {% block body %}{% endblock body %}
+    </div> 
+</body>
+</html>
+{% block javascripts %}{{ encore_entry_script_tags('app')}}{% endblock %}

@@ -1,0 +1,72 @@
+{% extends "admin/base.html.twig" %}
+
+{% block body %}
+<div class="dashboard__title">
+    {{ icon('bags') }}
+    Gestion des produits
+</div>
+<div class="dashboard__card">
+    <div class="header-responsive">
+        <div class="dashboard__header">
+            <form class="dashboard__search">
+                <input type="text" name="q" value="{{ app.request.get('q') }}" placeholder="Rechercher un produit">
+            </form>
+            <a href="{{ path('admin_product_new')}}" class="dashboard__btn">Ajouter un produit</a>
+        </div>
+    </div>
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Auteur</th>
+                <th>Date de creation</th>
+                <th>Date de modification</th>
+                <th>Etat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            {% set link = path('admin_product_edit', {id: product.id}) %}
+            <tr>
+                <td><a href="{{ link }}">{{ product.id }}</a></td>
+                <td><a href="{{ link }}">{{ product.name | truncate }}</a></td>
+                <td>{{ product.author.email | truncate }}</td>
+                <td>{{ product.createdAt | format_datetime('long','none', locale='fr') }}</td>
+                {% if product.updatedAt is not null %}
+                    <td>{{ product.updatedAt | format_datetime('long','none', locale='fr') }}</td>
+                    {% else %}
+                    <td>Aucune</td>
+                {% endif %}
+                <td>{% if product.expirationDate | date('d F Y') < "now" | date('d F Y') %}
+                    Périmé (DLC dépassé)
+                    {% elseif product.bestBeforeDate | date('d F Y') < "now" | date('d F Y') %}
+                    Périmé (DDM dépassé)
+                    {% else %}
+                    Consommable
+                    {% endif %}</td>
+                <td>
+                    <div class="dashboard__actions">
+                        {#<a href="#">{{ icon('eye') }}</a> // Afficher le produit en détail dans une boite modal #} 
+                        <a href="{{ link }}">{{ icon('edit')}}</a>
+                        <form method="POST" action="{{ path('admin_product_delete', {id: product.id}) }}" onsubmit="return confirm('Etes-vous sur de supprimer ce produit ?')">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
+                            <button>{{ icon('trash')}}</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {#<div class="dashboard__body">
+        {% for product in products %}
+        {% include 'admin/product/_product.html.twig' with {product: product} only %}
+        {% endfor %}
+    </div>#}
+    {{ knp_pagination_render(products) }}
+</div>
+
+{% endblock %}

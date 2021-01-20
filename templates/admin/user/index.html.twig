@@ -1,0 +1,68 @@
+{% extends "admin/base.html.twig" %}
+
+{% block body %}
+<div class="dashboard__title">
+    {{ icon('user') }}
+    Gestion des comptes
+</div>
+<div class="dashboard__card">
+    <div class="header-responsive">
+        <div class="dashboard__header">
+            <form class="dashboard__search">
+                <input type="text" name="q" value="{{ app.request.get('q') }}" placeholder="Rechercher un compte">
+            </form>
+            <a href="{{ path('admin_user_new')}}" class="dashboard__btn">Créer un compte</a>
+        </div>
+    </div>
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Pseudo</th>
+                <th>Email</th>
+                <th>Rôle(s)</th>
+                <th>Date de creation</th>
+                <th>Date de modification</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            {% set link = path('admin_user_edit', {id: user.id}) %}
+            <tr>
+                <td><a href="{{ link }}">{{ user.id }}</a></td>
+                <td><a href="{{ link }}">{{ user.pseudo | truncate }}</a></td>
+                <td><a href="{{ link }}">{{ user.email | truncate }}</a></td>
+                <td>
+                    {% for role in user.roles %}
+                    {% if role == "ROLE_ADMIN" %}
+                    Administrateur -
+                    {% elseif role == "ROLE_USER" %}
+                    Utilisateur
+                    {% endif %}
+                    {% endfor %}
+                </td>
+                <td>{{ user.createdAt | format_datetime('long','none', locale='fr') }}</td>
+                {% if user.updatedAt is not null %}
+                    <td>{{ user.updatedAt | format_datetime('long','none', locale='fr') }}</td>
+                    {% else %}
+                    <td>Aucune</td>
+                {% endif %}
+                <td>
+                    <div class="dashboard__actions">
+                        <a href="{{ link }}">{{ icon('edit')}}</a>
+                        <form method="POST" action="{{ path('admin_user_delete', {id: user.id}) }}" onsubmit="return confirm('Etes-vous sur de supprimer ce compte ?')">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                            <button>{{ icon('trash')}}</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {{ knp_pagination_render(users) }}
+</div>
+
+{% endblock %}

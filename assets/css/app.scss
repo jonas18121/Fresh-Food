@@ -1,0 +1,55 @@
+// Variables
+// ==================
+:root {
+    --color: #5C5C5C;
+    --green: #00FF00;
+    --red: #FB4635;
+    --white: #F9F9F9;
+    --background: #FFF7DF;
+    --contrast: #00FF00;
+    --border: #5C5C5C;
+    --label:  #5C5C5C;
+    --btn: #00FF00;
+    --switch: #00FF00;
+}
+
+// Outils
+// ==================
+@import "tools/container";
+@import "tools/reset";
+@import "tools/typography";
+
+// Generic
+// ==================
+body {
+    font-family: $f-r;
+    font-size: 16px;
+    line-height: 1.4;
+    color: var(--color);
+    background: var(--background);
+}
+
+// Modules
+// ==================
+@import "modules/alert";
+@import "modules/btn";
+@import "modules/burger";
+@import "modules/card";
+@import "modules/choices";
+@import "modules/date";
+@import "modules/filter";
+@import "modules/form";
+@import "modules/loader";
+@import "modules/nav";
+@import "modules/notification_perimer";
+@import "modules/pagination";
+@import "modules/switch";
+@import "modules/table";
+
+// Pages
+// ==================
+//@import "pages/card_product_index";
+@import "pages/dashboard";
+@import "pages/user_view";
+@import "pages/user_form";
+@import "pages/product";

@@ -1,0 +1,5 @@
+- Barre de navigation des différentes pages
+    - Se connecter/ nom de l'utilisateur 
+    - Recherche
+- Utilisateur non connecté
+    - Afficher les fonctionnalités que l'utilisateur a la possibilité de faire sur l'application lorsqu'il possède un compte

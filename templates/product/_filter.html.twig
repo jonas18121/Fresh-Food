@@ -1,0 +1,12 @@
+{{ form_start(form, {'attr': {'class': 'filter js-filter-form '}})}}
+<a class="btn" href="{{ path('product_new') }}">{{'product.action.new' | trans }}</a>
+<div class="spinner-border js-loading" role="status" aria-hidden="true" style="display: none;">
+    <span></span>Chargement ...
+</div>
+{{ form_row(form.q, {'attr': {'class': 'filter__search'}})}}
+<h4 class="filter__title">{{ icon('category')}}Catégories</h4>
+{{ form_row(form.categories, {'attr': {'class': 'filter__categories'}})}}
+<h4 class="filter__title">{{ icon('location')}}Emplacements</h4>
+{{ form_row(form.emplacements, {'attr': {'class': 'filter__emplacements'}})}}
+{#<button type="submit" class="btn">Filtrer</button>#}
+{{ form_end(form)}}

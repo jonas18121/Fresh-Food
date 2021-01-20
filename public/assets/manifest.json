@@ -1,0 +1,8 @@
+{
+  "assets/app.css": "http://localhost:8080/assets/app.css",
+  "assets/app.js": "http://localhost:8080/assets/app.js",
+  "assets/runtime.js": "http://localhost:8080/assets/runtime.js",
+  "assets/vendors~app.css": "http://localhost:8080/assets/vendors~app.css",
+  "assets/vendors~app.js": "http://localhost:8080/assets/vendors~app.js",
+  "assets/images/input-search.svg": "http://localhost:8080/assets/images/input-search.54b414c5.svg"
+}

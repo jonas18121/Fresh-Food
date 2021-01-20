@@ -1,0 +1,31 @@
+
+{{ form_start(form, { 'attr' : { 'class' : 'form_card' }} ) }}
+
+<h1 class="form_card_h1"><span class='span_h1'>Modifier</span></h1>
+
+{{ form_errors(form.pseudo) }}
+<div class="form_card_div">
+    <label for="inputEmail" class="form_card_label">Pseudo</label>
+    {{ form_widget(form.pseudo, { 'attr' : { 'class' : 'form_card_input'}})}}
+</div>
+
+{{ form_errors(form.email) }}
+<div class="form_card_div">
+    <label for="inputEmail" class="form_card_label">Email</label>
+    {{ form_widget(form.email, { 'attr' : { 'class' : 'form_card_input'}})}}
+</div>
+
+{{ form_errors(form.image.file) }}
+<div class="form_card_div">
+    <label for="inputImage" class="form_card_label">Télécharger une image</label>
+    {{ form_widget(form.image.file, { 'attr' : { 'class' : 'form_card_input'} } ) }}
+</div> 
+
+<div class="form_card_label form_card_div_mdp">
+    <a href=" {{ path('user_user_password') }} ">Cliquez ici pour changer de mot de passe</a>
+</div>
+
+<div class="form_card_div">
+    <button type="submit" class="form_card_submit">{{ action }}</button>
+</div>
+{{ form_end(form)}}

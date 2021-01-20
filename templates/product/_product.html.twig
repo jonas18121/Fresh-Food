@@ -1,0 +1,39 @@
+<article class="card" id="product-{{ product.id }}">
+    <a href="{{ path('product_edit', {id: product.id}) }}">
+        {% if product.expirationDate | date('d F Y') < "now" | date('d F Y') %}
+            <span class="card__expiration">Expiré</span>
+        {% elseif product.bestBeforeDate | date('d F Y') < "now" | date('d F Y') %}
+            <span class="card__expiration">Expiré</span>
+        {% elseif product.expirationDate | date('d F Y') == "now" | date('d F Y') %}
+            <span class="card__expiration__now">Expire aujourd'hui</span>
+        {% elseif product.bestBeforeDate | date('d F Y') == "now" | date('d F Y') %}
+            <span class="card__expiration__now">Expire aujourd'hui</span>
+        {% else %}
+            <span class="card__not__expiration">Expire le {{ product.expirationDate | format_datetime('long','none', locale='fr') }}</span>
+        {% endif %}
+        <header class="card__thumb">
+            {% if product.imageProduct is null %}
+                <img src="/images/product/default/no-photo.png" alt="image" >
+            {% else %}
+                <img src="{{ asset(product.imageProduct.webPathproduct) }}" alt="{{ product.imageProduct.alt }}">
+            {% endif %}
+        </header>
+        <div class="card__body">
+            <div class="card__name">{{ product.name | capitalize }}</div>
+            <div class="card__category">{{ product.classifiedIn.name }}</div>
+            <div class="card__emplacement">{{ product.placeIn.name }}</div>
+            <div class="card__quantity">{{ product.quantity }}</div>
+            <div class="card__unity">{{ product.units.name }}</div>
+            <div class="card__purchase__date">Acheté le : {{ product.purchaseDate | format_datetime('long','none', locale='fr') }}</div>
+        </div>
+        <footer class="card__footer"> 
+            <div class="card__createdAt">Ajouté le : {{ product.createdAt | format_datetime('long','none', locale='fr') }}</div>
+            <form method="POST" action="{{ path('product_delete', {id: product.id}) }}"
+                onsubmit="return confirm('Etes-vous sur de supprimer ce produit ?')">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
+                <button>{{ icon('trash')}}</button>
+            </form>
+        </footer>
+    </a>
+</article>

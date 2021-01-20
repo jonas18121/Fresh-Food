@@ -1,0 +1,19 @@
+product:
+    action:
+        add: 'Ajouter'
+        edit: 'Editer'
+        back_to_list: 'Retour à la liste'
+        new: 'Ajouter un produit'
+        see: 'Voir'
+    form:
+        name: 'Nom'
+        category: 'Catégorie'
+        emplacement: 'Emplacement'
+        quantity: 'Quantité'
+        unity: 'Unité'
+        purchaseDate: "Date d'achat"
+        expirationDate: 'DLC'
+        bestBeforeDate: 'DDM'
+        author: 'Auteur'
+    index:
+        title: 'Liste des produits'    

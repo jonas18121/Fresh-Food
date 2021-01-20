@@ -1,0 +1,102 @@
+.form__container {
+    width: calc(100% - var(--container-padding) * 2);
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.form {
+    @extend %card;
+    padding: 0 24px 24px;
+}
+.form > *,
+.form > * + * {
+    margin-top: 24px;
+}
+.form a {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0;
+    font-size: .9rem;
+    margin-top: 4px;
+
+    &:hover {
+        color: var(--green);
+        text-decoration: underline;
+    }
+}
+.form__btn {
+    display: flex;
+    flex-direction: column;
+}
+.form__btn a {
+    justify-content: center;
+    margin-top: 20px;
+}
+.form .btn__submit {
+    width: 100%;
+}
+.form__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    font-size: .9rem;
+    white-space: wrap;
+}
+.stack > * + * {
+    margin-top: 16px;
+}
+.row {
+    display: grid;
+    grid-template-columns: 1fr; 
+    grid-gap: 16px;
+
+    @media only screen and (min-width: 900px) {
+        align-items: center;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+}
+.form__group svg {
+    width: 25px;
+    height: 25px;
+}
+.form__group label {
+    display: block;
+    text-transform: uppercase;
+    font-size: .85em;
+    padding-left: .25rem;
+    margin-bottom: 0.5rem;
+    transition: color .3s;
+}
+.form__group ul li {
+    color: var(--red);
+    font-size: .8em;
+    margin-top: .5em;
+    line-height: 1.2;
+    padding-left: 4px;
+  
+    * > * {
+      margin-top: .5em;
+    }
+}
+.form__control {
+    display: block;
+    width: 100%;
+    min-height: 48px;
+    cursor: pointer;
+    outline: none;
+    padding: .75em ;
+    background-color: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    transition: border .3s;
+}
+.form__control:hover,
+.form__control:focus {
+    border: 1px solid var(--green);
+    box-shadow: 0px 0px 3px var(--green);
+}
+//.form__group input.is-invalid,
+//.form__group select.is-invalid {
+//    border-color: var(--red);
+//}
